@@ -26,7 +26,7 @@ pipeline {
         stage('Trivy Scan') {
             steps {
                 script {
-                    // Run Trivy scan and output results to a file
+                    // Run Trivy scan now and output results to a file
                     def scanResult = sh(script: "trivy image --exit-code 1 --severity HIGH,CRITICAL ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} | tee trivy_report.txt", returnStatus: true)
                     
                     // Check if vulnerabilities were found
